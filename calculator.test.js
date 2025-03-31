@@ -22,4 +22,15 @@ describe("Calculator", () => {
 
         expect(result).toBe(3);
     });
+
+    // Test case: Multiplication
+    it("should return the correct product of two numbers", () => {
+        const operand1 = 4,
+            op = "*",
+            operand2 = 6;
+
+        const result = calc(operand1, op, operand2);
+
+        expect(result).toBe(24);
+    });
 });
