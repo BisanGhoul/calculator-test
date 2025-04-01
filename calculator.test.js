@@ -70,4 +70,16 @@ describe("Calculator", () => {
 
         expect(result).toBe(7);
     });
+
+    it("should throw an error if the number of passed arguments is less than three", () => {
+        const operand1 = 5;
+        const operator = "+";
+
+        expect(() => calc(operand1, operator)).toThrow(
+            "At least one operator and two numbers are required"
+        );
+        expect(() => calc(operand1)).toThrow(
+            "At least one operator and two numbers are required"
+        );
+    });
 });
