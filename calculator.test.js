@@ -60,4 +60,14 @@ describe("Calculator", () => {
     it("should handle negative numbers correctly", () => {
         expect(calc(-8, "+", 5)).toBe(-3);
     });
+
+    it("should handle decimal numbers correctly", () => {
+        const operand1 = 3.5;
+        const operator = "*";
+        const operand2 = 2;
+
+        const result = calc(operand1, operator, operand2);
+
+        expect(result).toBe(7);
+    });
 });
