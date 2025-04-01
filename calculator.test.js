@@ -55,4 +55,9 @@ describe("Calculator", () => {
             "Division by zero"
         );
     });
+
+    // Test case: Negative numbers
+    it("should handle negative numbers correctly", () => {
+        expect(calc(-8, "+", 5)).toBe(-3);
+    });
 });
