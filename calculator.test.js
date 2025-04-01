@@ -44,4 +44,15 @@ describe("Calculator", () => {
 
         expect(result).toBe(2);
     });
+
+    // Test case: Division by zero
+    it("should throw an error when dividing by zero", () => {
+        const operand1 = 6;
+        const operator = "/";
+        const operand2 = 0;
+
+        expect(() => calc(operand1, operator, operand2)).toThrow(
+            "Division by zero"
+        );
+    });
 });
