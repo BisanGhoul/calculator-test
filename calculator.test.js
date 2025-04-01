@@ -33,4 +33,15 @@ describe("Calculator", () => {
 
         expect(result).toBe(24);
     });
+
+    // Test case: Division
+    it("should return the correct quotient of two numbers", () => {
+        const operand1 = 10,
+            op = "/",
+            operand2 = 5;
+
+        const result = calc(operand1, op, operand2);
+
+        expect(result).toBe(2);
+    });
 });
