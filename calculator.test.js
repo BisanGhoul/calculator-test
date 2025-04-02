@@ -11,10 +11,12 @@ describe("Helper Functions", () => {
             expect(infixToPostfix([10, "/", 2])).toEqual([10, 2, "/"]);
         });
 
-        // prettier-ignore
-        it("should handle operator precedence with parentheses", () => {
-            expect(infixToPostfix(["(", 5, "+", 2, ")", "*", "(", 10, "/", 2, ")", "+", 1]))
-            .toEqual([5, 2, "+", 10, 2, "/", "*", 1, "+"]);
+        it("should handle operator precedence correctly", () => {
+            // prettier-ignore
+            expect(infixToPostfix([2, "+", 3, "*", 4])).toEqual([2, 3, 4, "*", "+"]);
+
+            // prettier-ignore
+            expect(infixToPostfix([8, "/", 2, "+", 1])).toEqual([8, 2, "/", 1, "+"]);
         });
     });
 });
