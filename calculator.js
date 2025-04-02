@@ -61,10 +61,42 @@ function infixToPostfix(infixArray) {
     return postfixExpr;
 }
 
+function evaluatePostfix(postfixExpression) {
+    const operandStack = [];
+
+    for (const token of postfixExpression) {
+        if (typeof token === "number") {
+            operandStack.push(token);
+            continue;
+        }
+
+        const rightOperand = operandStack.pop();
+        const leftOperand = operandStack.pop();
+
+        switch (token) {
+            case "+":
+                operandStack.push(leftOperand + rightOperand);
+                break;
+            case "-":
+                operandStack.push(leftOperand - rightOperand);
+                break;
+            case "*":
+                operandStack.push(leftOperand * rightOperand);
+                break;
+            case "/":
+                operandStack.push(leftOperand / rightOperand);
+                break;
+        }
+    }
+
+    return operandStack.pop();
+}
+
 module.exports = {
     calc,
     _test: {
         // Testing-only exports
         infixToPostfix,
+        evaluatePostfix,
     },
 };
