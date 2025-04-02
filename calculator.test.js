@@ -1,4 +1,20 @@
-const calc = require("./calculator");
+const { calc, _test } = require("./calculator");
+const { infixToPostfix } = _test;
+
+describe("Helper Functions", () => {
+    // ===== Postfix Conversion Tests =====
+    describe("infixToPostfix()", () => {
+        it("should return the correct postfix expression for simple operators", () => {
+            expect(infixToPostfix([2, "+", 3])).toEqual([2, 3, "+"]);
+        });
+
+        // prettier-ignore
+        it("should handle operator precedence with parentheses", () => {
+            expect(infixToPostfix(["(", 5, "+", 2, ")", "*", "(", 10, "/", 2, ")", "+", 1]))
+            .toEqual([5, 2, "+", 10, 2, "/", "*", 1, "+"]);
+        });
+    });
+});
 
 describe("Calculator", () => {
     // Test case: Addition
