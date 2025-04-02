@@ -68,6 +68,20 @@ describe("Helper Functions", () => {
         it("should evaluate simple division", () => {
             expect(evaluatePostfix([10, 2, "/"])).toBe(5);
         });
+
+        it("should evaluate expressions with correct precedence", () => {
+            // 2 + (3 * 4)
+            expect(evaluatePostfix([2, 3, 4, "*", "+"])).toBe(14);
+            // (8 / 2) + 1
+            expect(evaluatePostfix([8, 2, "/", 1, "+"])).toBe(5);
+        });
+
+        it("should evaluate complex nested operations", () => {
+            // (5 + 2) * (10 / 2) + 1
+            expect(evaluatePostfix([5, 2, "+", 10, 2, "/", "*", 1, "+"])).toBe(
+                36
+            );
+        });
     });
 });
 
