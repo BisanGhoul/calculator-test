@@ -6,6 +6,9 @@ describe("Helper Functions", () => {
     describe("infixToPostfix()", () => {
         it("should return the correct postfix expression for simple operators", () => {
             expect(infixToPostfix([2, "+", 3])).toEqual([2, 3, "+"]);
+            expect(infixToPostfix([5, "-", 2])).toEqual([5, 2, "-"]);
+            expect(infixToPostfix([4, "*", 6])).toEqual([4, 6, "*"]);
+            expect(infixToPostfix([10, "/", 2])).toEqual([10, 2, "/"]);
         });
 
         // prettier-ignore
