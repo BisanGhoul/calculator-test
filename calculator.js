@@ -21,4 +21,50 @@ function calc(...args) {
             return operand1 / operand2;
     }
 }
-module.exports = calc;
+
+function infixToPostfix(infixArray) {
+    const postfixExpr = [];
+    const operators = [];
+    const operatorsPrecedence = { "+": 1, "-": 1, "*": 2, "/": 2 };
+
+    for (const token of infixArray) {
+        if (typeof token === "number") {
+            postfixExpr.push(token);
+        } else if (operatorsPrecedence.hasOwnProperty(token)) {
+            while (
+                operators.length &&
+                operators[operators.length - 1] !== "(" &&
+                operatorsPrecedence[operators[operators.length - 1]] >=
+                    operatorsPrecedence[token]
+            ) {
+                postfixExpr.push(operators.pop());
+            }
+            operators.push(token);
+        } else if (token === "(") {
+            operators.push(token);
+        } else if (token === ")") {
+            while (
+                operators.length &&
+                operators[operators.length - 1] !== "("
+            ) {
+                postfixExpr.push(operators.pop());
+            }
+            operators.pop();
+        }
+    }
+
+    // pop remaining operators
+    while (operators.length) {
+        postfixExpr.push(operators.pop());
+    }
+
+    return postfixExpr;
+}
+
+module.exports = {
+    calc,
+    _test: {
+        // Testing-only exports
+        infixToPostfix,
+    },
+};
