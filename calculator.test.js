@@ -1,5 +1,5 @@
 const { calc, _test } = require("./calculator");
-const { infixToPostfix } = _test;
+const { infixToPostfix, evaluatePostfix } = _test;
 
 describe("Helper Functions", () => {
     // ===== Postfix Conversion Tests =====
@@ -47,6 +47,26 @@ describe("Helper Functions", () => {
         it("should handle negative operands", () => {
             // prettier-ignore
             expect(infixToPostfix([-5, "*", "(", 3, "+", -2, ")"])).toEqual([-5, 3, -2, "+", "*"]);
+        });
+    });
+
+    // ===== Postfix Evaluation Tests =====
+
+    describe("evaluatePostfix()", () => {
+        it("should evaluate simple addition", () => {
+            expect(evaluatePostfix([2, 3, "+"])).toBe(5);
+        });
+
+        it("should evaluate simple subtraction", () => {
+            expect(evaluatePostfix([5, 2, "-"])).toBe(3);
+        });
+
+        it("should evaluate simple multiplication", () => {
+            expect(evaluatePostfix([4, 6, "*"])).toBe(24);
+        });
+
+        it("should evaluate simple division", () => {
+            expect(evaluatePostfix([10, 2, "/"])).toBe(5);
         });
     });
 });
