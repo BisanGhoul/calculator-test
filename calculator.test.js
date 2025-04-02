@@ -33,6 +33,21 @@ describe("Helper Functions", () => {
             // prettier-ignore
             expect(infixToPostfix([2, "*", "(", 3, "+", 4, ")"])).toEqual([2, 3, 4, "+", "*"]);
         });
+
+        it("should handle single-number expressions", () => {
+            expect(infixToPostfix([42])).toEqual([42]);
+        });
+
+        it("should handle consecutive operators with parentheses", () => {
+            // prettier-ignore
+            expect(infixToPostfix(["(", "(", 2, "+", 3, ")", "*", 4, ")", "-", 1]))
+          .toEqual([2, 3, "+", 4, "*", 1, "-"]);
+        });
+
+        it("should handle negative operands", () => {
+            // prettier-ignore
+            expect(infixToPostfix([-5, "*", "(", 3, "+", -2, ")"])).toEqual([-5, 3, -2, "+", "*"]);
+        });
     });
 });
 
