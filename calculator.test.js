@@ -82,6 +82,20 @@ describe("Helper Functions", () => {
                 36
             );
         });
+
+        it("should handle negative operands correctly", () => {
+            expect(evaluatePostfix([-3, 2, "*"])).toBe(-6); // -3 * 2
+            expect(evaluatePostfix([5, -2, "+"])).toBe(3); // 5 + (-2)
+        });
+
+        it("should handle decimal operands precisely", () => {
+            expect(evaluatePostfix([3.5, 2, "*"])).toBe(7); // 3.5 * 2
+            expect(evaluatePostfix([10, 4, "/"])).toBe(2.5); // 10 / 4
+        });
+
+        it("should evaluate single-operand expressions", () => {
+            expect(evaluatePostfix([42])).toBe(42); // Identity case
+        });
     });
 });
 
