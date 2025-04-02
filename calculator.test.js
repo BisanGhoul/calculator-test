@@ -18,6 +18,21 @@ describe("Helper Functions", () => {
             // prettier-ignore
             expect(infixToPostfix([8, "/", 2, "+", 1])).toEqual([8, 2, "/", 1, "+"]);
         });
+
+        // prettier-ignore
+        it("should handle operator precedence with parentheses", () => {
+                    expect(infixToPostfix(["(", 5, "+", 2, ")", "*", "(", 10, "/", 2, ")", "+", 1]))
+                    .toEqual([5, 2, "+", 10, 2, "/", "*", 1, "+"]);
+                });
+
+        it("should handle nested parentheses", () => {
+            // prettier-ignore
+            expect(infixToPostfix(["(", 5, "+", 2, ")", "*", "(", 10, "/", 2, ")", "+", 1]))
+              .toEqual([5, 2, "+", 10, 2, "/", "*", 1, "+"]);
+
+            // prettier-ignore
+            expect(infixToPostfix([2, "*", "(", 3, "+", 4, ")"])).toEqual([2, 3, 4, "+", "*"]);
+        });
     });
 });
 
