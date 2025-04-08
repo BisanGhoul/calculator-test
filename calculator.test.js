@@ -151,6 +151,24 @@ describe("Helper Functions", () => {
                 );
             });
         });
+
+        // Operators and operands arrangment
+        describe("Operator Placement", () => {
+            it("should throw an error for sequential operators", () => {
+                expect(() => validateExpression(5, "*", "+", 3)).toThrow(
+                    "Invalid operator placement at index 2"
+                );
+                expect(() => validateExpression(5, "-", "-", 3)).toThrow(
+                    "Invalid operator placement at index 2"
+                );
+            });
+
+            it("should throw an error for multiple numbers without operators", () => {
+                expect(() => validateExpression(2, 3)).toThrow(
+                    "At least one operator and two numbers are required"
+                );
+            });
+        });
     });
 });
 
