@@ -170,6 +170,36 @@ describe("Helper Functions", () => {
             });
         });
 
+        // Edge Cases
+        describe("Edge Cases", () => {
+            it("should throw an error if only one number is entered", () => {
+                expect(() => validateExpression(2)).toThrow(
+                    "At least one operator and two numbers are required"
+                );
+            });
+
+            it("should throw an error for invalid operands (string instead of number)", () => {
+                expect(() => validateExpression("2", "+", 3)).toThrow(
+                    "Invalid token '2' at index 0"
+                );
+                expect(() => validateExpression(2, "+", "3")).toThrow(
+                    "Invalid token '3' at index 2"
+                );
+            });
+
+            it("should throw an error when no operands or operators are entered", () => {
+                expect(() => validateExpression([])).toThrow(
+                    "At least one operator and two numbers are required"
+                );
+            });
+
+            it("should throw an error if only one number is entered", () => {
+                expect(() => validateExpression([42])).toThrow(
+                    "At least one operator and two numbers are required"
+                );
+            });
+        });
+
         // Parentheses Handling
         describe("Parentheses Handling", () => {
             it("should throw an error for unbalanced parentheses", () => {
