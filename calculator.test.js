@@ -200,6 +200,24 @@ describe("Helper Functions", () => {
             });
         });
 
+        describe("Valid Expressions", () => {
+            it("should accept valid expressions", () => {
+                expect(() => validateExpression(2, "+", 3)).not.toThrow();
+                expect(() => validateExpression(2, "-", 3)).not.toThrow();
+                expect(() => validateExpression(2, "*", 3)).not.toThrow();
+                expect(() => validateExpression(2, "/", 3)).not.toThrow();
+            });
+
+            it("should accept valid expressions with parentheses", () => {
+                expect(() =>
+                    validateExpression("(", 2, "+", 3, ")")
+                ).not.toThrow();
+                expect(() =>
+                    validateExpression("(", 2, "+", "(", 3, "-", 1, ")", ")")
+                ).not.toThrow();
+            });
+        });
+
         // Parentheses Handling
         describe("Parentheses Handling", () => {
             it("should throw an error for unbalanced parentheses", () => {
