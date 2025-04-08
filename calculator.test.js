@@ -169,6 +169,31 @@ describe("Helper Functions", () => {
                 );
             });
         });
+
+        // Parentheses Handling
+        describe("Parentheses Handling", () => {
+            it("should throw an error for unbalanced parentheses", () => {
+                expect(() => validateExpression("(", 5, "+", 5)).toThrow(
+                    "Mismatched parentheses"
+                );
+                expect(() => validateExpression(5, "+", 5, ")")).toThrow(
+                    "Mismatched parentheses"
+                );
+                expect(() =>
+                    validateExpression("(", 5, "+", 5, ")")
+                ).not.toThrow();
+                expect(() =>
+                    validateExpression("(", 5, "+", "(", 5, ")")
+                ).toThrow("Mismatched parentheses");
+            });
+
+            // prettier-ignore
+            it("should handle nested parentheses correctly", () => {
+            expect(() => validateExpression("(", 5, "+", "(", 3, "+", 2, ")", ")")).not.toThrow();
+            expect(() => validateExpression("(", 5, "+", 3, "+", 2, ")")).not.toThrow();
+            expect(() => validateExpression("(", 5, "+", "(", 3, "+", "(", 2, ")", ")", ")")).not.toThrow();
+        });
+        });
     });
 });
 
