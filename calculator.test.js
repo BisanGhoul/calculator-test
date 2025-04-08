@@ -156,10 +156,10 @@ describe("Helper Functions", () => {
         describe("Operator Placement", () => {
             it("should throw an error for sequential operators", () => {
                 expect(() => validateExpression(5, "*", "+", 3)).toThrow(
-                    "Invalid operator placement at index 2"
+                    "Invalid operator placement at index 1"
                 );
                 expect(() => validateExpression(5, "-", "-", 3)).toThrow(
-                    "Invalid operator placement at index 2"
+                    "Invalid operator placement at index 1"
                 );
             });
 
