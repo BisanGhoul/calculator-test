@@ -106,6 +106,12 @@ describe("Helper Functions", () => {
         it("should evaluate single-operand expressions", () => {
             expect(evaluatePostfix([42])).toBe(42); // Identity case
         });
+
+        it("should throw an error for division by zero", () => {
+            expect(() => evaluatePostfix([5, 0, "/"])).toThrow(
+                "Division by zero is not allowed"
+            );
+        });
     });
 
     // ===== Validate Input Tests =====
