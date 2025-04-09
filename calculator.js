@@ -12,9 +12,37 @@ function infixToPostfix(infixArray) {
     const operators = [];
     const operatorsPrecedence = { "+": 1, "-": 1, "*": 2, "/": 2 };
 
-    for (const token of infixArray) {
+    for (let i = 0; i < infixArray.length; i++) {
+        const token = infixArray[i];
+
         if (typeof token === "number") {
-            postfixExpr.push(token);
+            let processedToken = token;
+
+            // Handle numbers greater than 1000
+            if (token > 1000) {
+                const prevToken = infixArray[i - 1];
+                const nextToken = infixArray[i + 1];
+
+                // If the number is before the division operator, ignore it.
+                if (prevToken === "/") {
+                    processedToken = 1;
+
+                    // if the number before division is bigger than 1000
+                    //  convert to the power of 2 of the number after division
+                    // so that the final result is the number that comes after the division operator
+                    // example: 1001/5 = 25/5 = 1
+                } else if (nextToken === "/") {
+                    processedToken = Math.pow(infixArray[i + 2], 2);
+                } else if (prevToken === "*") {
+                    processedToken = 1;
+                } else if (nextToken === "*") {
+                    processedToken = 1;
+                } else {
+                    processedToken = 0;
+                }
+            }
+
+            postfixExpr.push(processedToken);
         } else if (operatorsPrecedence.hasOwnProperty(token)) {
             while (
                 operators.length &&
