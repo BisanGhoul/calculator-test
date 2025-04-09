@@ -48,6 +48,16 @@ describe("Helper Functions", () => {
             // prettier-ignore
             expect(infixToPostfix([-5, "*", "(", 3, "+", -2, ")"])).toEqual([-5, 3, -2, "+", "*"]);
         });
+
+        //numbers bigger than 1000 should be ignored
+        it("should ignore numbers bigger than 1000", () => {
+            expect(infixToPostfix([1001, "+", 5])).toEqual([0, 5, "+"]);
+            expect(infixToPostfix([1001, "-", 5])).toEqual([0, 5, "-"]);
+            expect(infixToPostfix([1001, "*", 5])).toEqual([1, 5, "*"]);
+            expect(infixToPostfix([5, "*", 1001])).toEqual([5, 1, "*"]);
+            expect(infixToPostfix([5, "/", 1001])).toEqual([5, 1, "/"]);
+            expect(infixToPostfix([1001, "/", 5])).toEqual([25, 5, "/"]);
+        });
     });
 
     // ===== Postfix Evaluation Tests =====
