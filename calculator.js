@@ -97,6 +97,9 @@ function evaluatePostfix(postfixExpression) {
                 operandStack.push(leftOperand * rightOperand);
                 break;
             case "/":
+                if (rightOperand === 0) {
+                    throw new Error("Division by zero is not allowed");
+                }
                 operandStack.push(leftOperand / rightOperand);
                 break;
         }
