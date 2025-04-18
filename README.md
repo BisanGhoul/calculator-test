@@ -1,6 +1,7 @@
 # JavaScript Arithmetic Expression Calculator
 
 This project is a JavaScript-based arithmetic expression calculator. It converts infix expressions to postfix (Reverse Polish Notation), validates them, and evaluates the result. It also includes unit tests to verify logic correctness and edge-case handling.
+[![codecov](https://codecov.io/gh/BisanGhoul/calculator-test/branch/test-branch/graph/badge.svg)](https://codecov.io/gh/BisanGhoul/calculator-test)
 
 ## Features
 
