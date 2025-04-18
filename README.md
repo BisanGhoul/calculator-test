@@ -196,7 +196,8 @@ Run the test suite:
 ```bash
 npx jest
 ```
-
+### Output
+![Screenshot](./jest-test-output.png)
 ---
 
 
